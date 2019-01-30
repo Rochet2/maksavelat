@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/maksavelat/static/css/main.c45f654d.chunk.css"
   },
   {
-    "revision": "e60a2918bdd1737ef45bb03b96bf48e8",
+    "revision": "513484d6e176522f902dabb1d89e504d",
     "url": "/maksavelat/index.html"
   }
 ];
