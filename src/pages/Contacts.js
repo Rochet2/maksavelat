@@ -17,9 +17,13 @@ class Contacts extends Component {
             <Segment inverted={whiteTheme} basic style={{ height: '100vh' }}>
                 <Header size="large">Contacts</Header>
                 <Input
-                    action={{ content: 'Add contact', onClick: () => dispatch({ type: 'AddContact', value: this.state.value }) }}
+                    action={{ content: 'Add contact', onClick: () => {
+                        dispatch({ type: 'AddContact', value: this.state.value })
+                        this.setState({ value: '' })
+                    }}}
                     placeholder='Contact name...'
                     onChange={(e => this.setState({ value: e.target.value }))}
+                    value={this.state.value}
                 />
                 <List inverted={whiteTheme} divided>
                     {contacts.sort().map(contact => (
@@ -31,7 +35,6 @@ class Contacts extends Component {
                                     icon='remove'
                                     onClick={() => {
                                         dispatch({ type: 'RemoveContact', value: contact })
-                                        this.setState({ value: '' })
                                     }}
                                 />
                             </List.Content>

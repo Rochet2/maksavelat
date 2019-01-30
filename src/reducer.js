@@ -19,21 +19,21 @@ const testState = {
 
 const reducer = (paramstate, action) => {
     let realstate = paramstate || JSON.parse(window.localStorage.getItem("maksavelat")) || initialState
-    console.log(paramstate, realstate)
+    console.log(action)
     const state = JSON.parse(JSON.stringify(realstate))
     switch (action.type) {
         case "ToggleTheme":
             state.whiteTheme = !state.whiteTheme
             break
         case "AddReason":
-            if (!state.reasons.find(r => r === action.value))
+            if (action.value.length !== 0 && !state.reasons.find(r => r === action.value))
                 state.reasons.push(action.value)
             break
         case "RemoveReason":
             state.reasons = state.reasons.filter(r => r !== action.value)
             break
         case "AddContact":
-            if (!state.contacts.find(c => c === action.value))
+            if (action.value.length !== 0 && !state.contacts.find(c => c === action.value))
                 state.contacts.push(action.value)
             break
         case "RemoveContact":

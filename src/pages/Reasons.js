@@ -18,9 +18,13 @@ class Reasons extends Component {
                 <Segment inverted={whiteTheme} basic style={{ height: '100vh' }}>
                     <Header size="large">Reasons</Header>
                     <Input
-                        action={{ content: 'Add reason', onClick: () => dispatch({ type: 'AddReason', value: this.state.value }) }}
+                        action={{ content: 'Add reason', onClick: () => {
+                            dispatch({ type: 'AddReason', value: this.state.value })
+                            this.setState({ value: '' })
+                        }}}
                         placeholder='Reason name...'
                         onChange={(e => this.setState({ value: e.target.value }))}
+                        value={this.state.value}
                     />
                     <List inverted={whiteTheme} divided>
                         {reasons.map(reason => (
@@ -32,7 +36,6 @@ class Reasons extends Component {
                                         icon='remove'
                                         onClick={() => {
                                             dispatch({ type: 'RemoveReason', value: reason })
-                                            this.setState({ value: '' })
                                         }}
                                     />
                                 </List.Content>
