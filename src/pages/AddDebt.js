@@ -12,6 +12,10 @@ const initialState = () => ({
     amount: '',
     for: '',
     comment: '',
+    errorAmount: false,
+    errorContact: false,
+    errorReason: false,
+    errorTimer: null,
 })
 
 class AddDebt extends Component {
@@ -22,38 +26,55 @@ class AddDebt extends Component {
 
     render() {
         const { reasons, contacts, whiteTheme } = this.props
+        let {errorAmount, errorContact, errorReason, debt, who, for: reason, comment, amount} = this.state
         return (
             <div>
                 <Segment inverted={whiteTheme} basic style={{ height: '100vh'}}>
                     <Form
                         inverted={whiteTheme}
                         onSubmit={() => {
-                            this.props.dispatch({
-                                type: 'AddDebt',
-                                value: {
-                                    who: this.state.who,
-                                    amount: this.state.debt ? -Number(this.state.amount) : Number(this.state.amount),
-                                    reason: this.state.for,
-                                    comment: this.state.comment,
-                                    date: moment().format(),
-                                    paid: false,
-                                },
-                            })
-                            this.setState(initialState())
+                            amount = Number(amount)
+                            if (!amount)
+                                errorAmount = true
+                            if (!who)
+                                errorContact = true
+                            if (!reason)
+                                errorReason = true
+
+                            if (!errorAmount && !errorContact && !errorReason) {
+                                this.props.dispatch({
+                                    type: 'AddDebt',
+                                    value: {
+                                        who: who,
+                                        amount: debt ? -amount : amount,
+                                        reason: reason,
+                                        comment: comment,
+                                        date: moment().format(),
+                                        paid: false,
+                                    },
+                                })
+                                if (this.state.errorTimer)
+                                    clearTimeout(this.state.errorTimer)
+                                this.setState(initialState())
+                            } else {
+                                if (this.state.errorTimer)
+                                    clearTimeout(this.state.errorTimer)
+                                this.setState({errorAmount, errorReason, errorContact, errorTimer: setTimeout(()=>this.setState({errorAmount: false, errorReason: false, errorContact: false}), 3000)})
+                            }
                         }}
                     >
                         {this.state.debt ?
                             <Fragment>
-                                <Form.Input required type="number" label='You owe' placeholder='Amount...' value={this.state.amount} onChange={(_, e) => this.setState({ amount: e.value })} />
-                                <Form.Select required label='To' options={contacts.map(toOptions)} placeholder='Contact...' value={this.state.who} onChange={(_, e) => this.setState({ who: e.value })} />
+                                <Form.Input required error={errorAmount} type="number" label='You owe' placeholder='Amount...' value={this.state.amount} onChange={(_, e) => this.setState({ amount: e.value })} />
+                                <Form.Select required error={errorContact} label='To' options={contacts.map(toOptions)} placeholder='Contact...' value={this.state.who} onChange={(_, e) => this.setState({ who: e.value })} />
                             </Fragment>
                             :
                             <Fragment>
-                                <Form.Select required label='Contact' options={contacts.map(toOptions)} placeholder='Contact...' value={this.state.who} onChange={(_, e) => this.setState({ who: e.value })} />
-                                <Form.Input required type="number" label='Owes you' placeholder='Amount...' value={this.state.amount} onChange={(_, e) => this.setState({ amount: e.value })} />
+                                <Form.Select required error={errorContact} label='Contact' options={contacts.map(toOptions)} placeholder='Contact...' value={this.state.who} onChange={(_, e) => this.setState({ who: e.value })} />
+                                <Form.Input required error={errorAmount} type="number" label='Owes you' placeholder='Amount...' value={this.state.amount} onChange={(_, e) => this.setState({ amount: e.value })} />
                             </Fragment>
                         }
-                        <Form.Select required label='For' options={reasons.map(toOptions)} placeholder='Reason...' value={this.state.for} onChange={(_, e) => this.setState({ for: e.value })} />
+                        <Form.Select required error={errorReason} label='For' options={reasons.map(toOptions)} placeholder='Reason...' value={this.state.for} onChange={(_, e) => this.setState({ for: e.value })} />
                         <Form.Input label='Comment (optional)' placeholder='Comment...' value={this.state.comment} onChange={(_, e) => this.setState({ comment: e.value })} />
                         <Form.Group widths="equal">
                             <Form.Button color="blue" basic fluid onClick={(e) => {

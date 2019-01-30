@@ -19,7 +19,6 @@ const testState = {
 
 const reducer = (paramstate, action) => {
     let realstate = paramstate || JSON.parse(window.localStorage.getItem("maksavelat")) || initialState
-    console.log(action)
     const state = JSON.parse(JSON.stringify(realstate))
     switch (action.type) {
         case "ToggleTheme":
@@ -40,7 +39,7 @@ const reducer = (paramstate, action) => {
             state.contacts = state.contacts.filter(c => c !== action.value)
             break
         case "AddDebt":
-            action.value.id = state.debts.reduce((d, acc) => Math.max(d.id, acc), 0) + 1
+            action.value.id = state.debts.reduce((acc, d) => Math.max(d.id, acc), 0) + 1
             state.debts.push(action.value)
             break
         case "PayDebt":
@@ -56,6 +55,7 @@ const reducer = (paramstate, action) => {
             break
     }
     window.localStorage.setItem("maksavelat", JSON.stringify(state))
+    console.log(state, action)
     return state
 }
 
