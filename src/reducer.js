@@ -17,8 +17,10 @@ const testState = {
     whiteTheme: false,
 }
 
-const reducer = (paramstate = testState, action) => {
-    const state = JSON.parse(JSON.stringify(paramstate))
+const reducer = (paramstate, action) => {
+    let realstate = paramstate || JSON.parse(window.localStorage.getItem("maksavelat")) || initialState
+    console.log(paramstate, realstate)
+    const state = JSON.parse(JSON.stringify(realstate))
     switch (action.type) {
         case "ToggleTheme":
             state.whiteTheme = !state.whiteTheme
@@ -53,6 +55,7 @@ const reducer = (paramstate = testState, action) => {
         default:
             break
     }
+    window.localStorage.setItem("maksavelat", JSON.stringify(state))
     return state
 }
 

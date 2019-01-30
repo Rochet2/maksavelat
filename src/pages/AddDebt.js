@@ -56,10 +56,10 @@ class AddDebt extends Component {
                         <Form.Select required label='For' options={reasons.map(toOptions)} placeholder='Reason...' value={this.state.for} onChange={(_, e) => this.setState({ for: e.value })} />
                         <Form.Input label='Comment (optional)' placeholder='Comment...' value={this.state.comment} onChange={(_, e) => this.setState({ comment: e.value })} />
                         <Form.Group widths="equal">
-                            <Button color="blue" basic fluid onClick={(e) => {
+                            <Form.Button color="blue" basic fluid onClick={(e) => {
                                 e.preventDefault()
                                 this.setState((state) => ({ debt: !state.debt }))
-                            }}>Toggle reciever</Button>
+                            }}>Toggle reciever</Form.Button>
                             <Form.Button color="green" basic fluid>Add debt</Form.Button>
                         </Form.Group>
                     </Form>
