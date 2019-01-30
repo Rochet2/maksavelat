@@ -20,6 +20,13 @@ const testState = {
 const reducer = (paramstate, action) => {
     let realstate = paramstate || JSON.parse(window.localStorage.getItem("maksavelat")) || initialState
     const state = JSON.parse(JSON.stringify(realstate))
+
+    // correct missing IDs if any
+    state.debts.forEach(d => {
+        if (!d.id)
+            d.id = state.debts.filter(d1 => d1.id).reduce((acc, d) => Math.max(d.id, acc), 0) + 1
+    })
+
     switch (action.type) {
         case "ToggleTheme":
             state.whiteTheme = !state.whiteTheme

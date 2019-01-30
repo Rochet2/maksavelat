@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux'
 import { array, func, bool } from 'prop-types'
-import { Form, Segment, Button } from 'semantic-ui-react'
+import { Form, Segment } from 'semantic-ui-react'
 import moment from 'moment'
 
 const toOptions = (label) => ({ key: label, text: label, value: label })
