@@ -10,7 +10,7 @@ import Contacts from './pages/Contacts'
 class App extends Component {
   render() {
     return (
-      <Router>
+      <Router basename={'/maksavelat'}>
         <div>
           <Route exact path="/" component={MainPage} />
           <Route exact path="/AddDebt" component={AddDebt} />
