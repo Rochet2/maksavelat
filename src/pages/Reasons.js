@@ -30,7 +30,10 @@ class Reasons extends Component {
                                         color='red'
                                         content={'Remove'}
                                         icon='remove'
-                                        onClick={() => dispatch({ type: 'RemoveReason', value: reason })}
+                                        onClick={() => {
+                                            dispatch({ type: 'RemoveReason', value: reason })
+                                            this.setState({ value: '' })
+                                        }}
                                     />
                                 </List.Content>
                                 <List.Header>

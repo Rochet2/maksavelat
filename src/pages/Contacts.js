@@ -29,7 +29,10 @@ class Contacts extends Component {
                                     color='red'
                                     content={'Remove'}
                                     icon='remove'
-                                    onClick={() => dispatch({ type: 'RemoveContact', value: contact })}
+                                    onClick={() => {
+                                        dispatch({ type: 'RemoveContact', value: contact })
+                                        this.setState({ value: '' })
+                                    }}
                                 />
                             </List.Content>
                             <List.Header>
