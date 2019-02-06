@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/maksavelat/precache-manifest.99355cbfbcd75d6d1b0288918634df67.js"
+  "/maksavelat/precache-manifest.64b9ef37a5efc46ea744e43d19111cbb.js"
 );
 
 workbox.clientsClaim();
