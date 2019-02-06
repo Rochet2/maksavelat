@@ -1,19 +1,19 @@
 import React, { useState, Fragment } from 'react';
 import { connect } from 'react-redux'
-import { array, func, bool } from 'prop-types'
+import { withRouter } from 'react-router-dom'
+import { shape, string, number, array, func, bool } from 'prop-types'
 import { Form, Segment } from 'semantic-ui-react'
-import moment from 'moment'
 import { SemanticToastContainer, toast } from 'react-semantic-toasts'
 import 'react-semantic-toasts/styles/react-semantic-alert.css'
 
 const toOptions = (label) => ({ key: label, text: label, value: label })
 
-function AddDebt({ reasons, contacts, whiteTheme, dispatch }) {
-  const [isDebt, setIsDebt] = useState(true)
-  const [who, setWho] = useState('')
-  const [amount, setAmount] = useState('')
-  const [reason, setReason] = useState('')
-  const [comment, setComment] = useState('')
+function EditDebtForm({ reasons, contacts, whiteTheme, dispatch, debt, history }) {
+  const [isDebt, setIsDebt] = useState(debt.amount < 0)
+  const [who, setWho] = useState(debt.who)
+  const [amount, setAmount] = useState(Math.abs(debt.amount))
+  const [reason, setReason] = useState(debt.reason)
+  const [comment, setComment] = useState(debt.comment)
   const [errorTimer, setErrorTimer] = useState(null)
 
   let [errorAmount, setErrorAmount] = useState(false)
@@ -36,14 +36,13 @@ function AddDebt({ reasons, contacts, whiteTheme, dispatch }) {
 
             if (!errorAmount && !errorContact && !errorReason) {
               dispatch({
-                type: 'AddDebt',
+                type: 'EditDebt',
                 value: {
+                  id: debt.id,
                   who: who,
                   amount: isDebt ? -amountNumber : amountNumber,
                   reason: reason,
                   comment: comment,
-                  date: moment().format(),
-                  paid: false,
                 },
               })
               if (errorTimer)
@@ -52,11 +51,7 @@ function AddDebt({ reasons, contacts, whiteTheme, dispatch }) {
               setErrorAmount(false)
               setErrorContact(false)
               setErrorReason(false)
-              setWho('')
-              setAmount('')
-              setReason('')
-              setComment('')
-              toast({ type: 'success', icon: 'save', title: 'New debt created', time: 3000 });
+              toast({ type: 'success', icon: 'save', title: 'Saved', time: 3000 });
             } else {
               if (errorTimer)
                 clearTimeout(errorTimer)
@@ -89,7 +84,32 @@ function AddDebt({ reasons, contacts, whiteTheme, dispatch }) {
               e.preventDefault()
               setIsDebt(!isDebt)
             }}>Toggle reciever</Form.Button>
-            <Form.Button color="green" basic fluid>Add debt</Form.Button>
+            <Form.Field>
+            <Form.Button color="green" fluid>Save debt</Form.Button>
+            </Form.Field>
+          </Form.Group>
+          <Form.Group widths="equal">
+            <Form.Button color="orange" basic fluid onClick={(e) => {
+              e.preventDefault()
+              if (errorTimer)
+                clearTimeout(errorTimer)
+              setIsDebt(debt.amount < 0)
+              setWho(debt.who)
+              setAmount(Math.abs(debt.amount))
+              setReason(debt.reason)
+              setComment(debt.comment)
+              setErrorTimer(null)
+            
+              setErrorAmount(false)
+              setErrorContact(false)
+              setErrorReason(false)
+              toast({ type: 'success', icon: 'erase', title: 'Form reset', time: 3000 });
+            }}>Reset form</Form.Button>
+            <Form.Button color="red" basic fluid onClick={(e) => {
+              e.preventDefault()
+              dispatch({ type: 'DeleteDebt', value: debt.id})
+              history.goBack()
+            }}>Delete debt</Form.Button>
           </Form.Group>
         </Form>
       </Segment>
@@ -106,11 +126,18 @@ const mapStateToProps = state => {
   }
 }
 
-AddDebt.propTypes = {
+EditDebtForm.propTypes = {
+  debt: shape({
+    who: string.isRequired,
+    amount: number.isRequired,
+    reason: string.isRequired,
+    comment: string.isRequired,
+  }).isRequired,
   reasons: array.isRequired,
   contacts: array.isRequired,
   whiteTheme: bool.isRequired,
   dispatch: func.isRequired,
+  history: shape({ goBack: func.isRequired }).isRequired,
 }
 
-export default connect(mapStateToProps)(AddDebt)
+export default withRouter(connect(mapStateToProps)(EditDebtForm))
