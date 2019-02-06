@@ -67,13 +67,13 @@ class AddDebt extends Component {
                     >
                         {this.state.debt ?
                             <Fragment>
-                                <Form.Input required error={errorAmount} type="number" label='You owe' placeholder='Amount...' value={this.state.amount} onChange={(_, e) => this.setState({ amount: e.value })} />
+                                <Form.Input required error={errorAmount} type="number" step="0.01" label='You owe' placeholder='Amount...' value={this.state.amount} onChange={(_, e) => this.setState({ amount: e.value })} />
                                 <Form.Select required error={errorContact} label='To' options={contacts.sort().map(toOptions)} placeholder='Contact...' value={this.state.who} onChange={(_, e) => this.setState({ who: e.value })} />
                             </Fragment>
                             :
                             <Fragment>
                                 <Form.Select required error={errorContact} label='Contact' options={contacts.sort().map(toOptions)} placeholder='Contact...' value={this.state.who} onChange={(_, e) => this.setState({ who: e.value })} />
-                                <Form.Input required error={errorAmount} type="number" label='Owes you' placeholder='Amount...' value={this.state.amount} onChange={(_, e) => this.setState({ amount: e.value })} />
+                                <Form.Input required error={errorAmount} type="number" step="0.01" label='Owes you' placeholder='Amount...' value={this.state.amount} onChange={(_, e) => this.setState({ amount: e.value })} />
                             </Fragment>
                         }
                         <Form.Select required error={errorReason} label='For' options={reasons.sort().map(toOptions)} placeholder='Reason...' value={this.state.for} onChange={(_, e) => this.setState({ for: e.value })} />
