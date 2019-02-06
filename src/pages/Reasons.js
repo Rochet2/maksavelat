@@ -16,7 +16,7 @@ function Reasons({ whiteTheme, dispatch, reasons }) {
               setValue('')
             }
           }}
-          placeholder='Reason name...'
+          placeholder='Reason name....'
           onChange={e => setValue(e.target.value)}
           value={value}
         />
