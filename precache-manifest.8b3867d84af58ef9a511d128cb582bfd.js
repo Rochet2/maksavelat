@@ -1,7 +1,7 @@
 self.__precacheManifest = [
   {
-    "revision": "8cfd76f8c6228677c912",
-    "url": "/maksavelat/static/js/main.8cfd76f8.chunk.js"
+    "revision": "1bf4ad6b68410b86f940",
+    "url": "/maksavelat/static/js/main.1bf4ad6b.chunk.js"
   },
   {
     "revision": "b26ad6eeadef8bd611fb",
@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/maksavelat/static/js/runtime~main.3164e04f.js"
   },
   {
-    "revision": "10471274de55e39ae18e88c2eea09ec9",
+    "revision": "c8cdfe4af34d2a7418ad8b4ad812cf8e",
     "url": "/maksavelat/index.html"
   }
 ];
