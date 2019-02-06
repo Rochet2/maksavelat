@@ -16,10 +16,6 @@ const toSummaries = (debts) => {
 }
 
 class Debts extends Component {
-    constructor(props) {
-        super(props)
-    }
-
     summaryItem(summary) {
         return (
             <Item key={summary.who}>
