@@ -20,7 +20,7 @@ self.__precacheManifest = [
     "url": "/maksavelat/static/js/runtime~main.3164e04f.js"
   },
   {
-    "revision": "b9a8ee5cc0ae1ace071f2e35f411a919",
+    "revision": "0452239d6c7fdfb42ea83493bdc32792",
     "url": "/maksavelat/index.html"
   }
 ];
