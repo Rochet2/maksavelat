@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux'
 import { array, func, bool } from 'prop-types'
-import { Header, Button, Segment, Input, List } from 'semantic-ui-react'
+import { Header, Button, Segment, Input, List, Divider } from 'semantic-ui-react'
 
 function Contacts({ whiteTheme, dispatch, contacts }) {
   const [value, setValue] = useState('')
@@ -9,6 +9,8 @@ function Contacts({ whiteTheme, dispatch, contacts }) {
     <Segment inverted={whiteTheme} basic style={{ height: '100vh' }}>
       <Header size="large">Contacts</Header>
       <Input
+        fluid
+        size="big"
         action={{
           content: 'Add contact', onClick: () => {
             dispatch({ type: 'AddContact', value })
@@ -19,6 +21,7 @@ function Contacts({ whiteTheme, dispatch, contacts }) {
         onChange={e => setValue(e.target.value)}
         value={value}
       />
+      <Divider />
       <List inverted={whiteTheme} divided>
         {contacts.sort().map(contact => (
           <List.Item key={contact}>
