@@ -68,16 +68,16 @@ function Debts({ whiteTheme, debts, dispatch, history }) {
         <Button.Group>
           <Button
             color='green'
-            content={'Edit'}
-            icon='edit'
-            onClick={() => history.push(`${history.location.pathname}/${debt.id}`)}
-          />
-          <Button
-            color='green'
             content={debt.paid ? 'Undo payment' : 'Pay'}
             icon='euro'
             basic={debt.paid}
             onClick={() => dispatch({ type: debt.paid ? 'UnPayDebt' : 'PayDebt', value: debt.id })}
+          />
+          <Button
+            color='green'
+            content={'Edit'}
+            icon='edit'
+            onClick={() => history.push(`${history.location.pathname}/${debt.id}`)}
           />
         </Button.Group>
       </Item>

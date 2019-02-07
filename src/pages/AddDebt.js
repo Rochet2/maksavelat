@@ -5,7 +5,6 @@ import { Form, Segment } from 'semantic-ui-react'
 import moment from 'moment'
 import { SemanticToastContainer, toast } from 'react-semantic-toasts'
 import 'react-semantic-toasts/styles/react-semantic-alert.css'
-import '../common.css'
 
 const toOptions = (label) => ({ key: label, text: label, value: label })
 
@@ -20,7 +19,6 @@ function AddDebt({ reasons, contacts, whiteTheme, dispatch }) {
   let [errorAmount, setErrorAmount] = useState(false)
   let [errorContact, setErrorContact] = useState(false)
   let [errorReason, setErrorReason] = useState(false)
-
   return (
     <div>
       <SemanticToastContainer />
@@ -75,23 +73,23 @@ function AddDebt({ reasons, contacts, whiteTheme, dispatch }) {
         >
           {isDebt ?
             <Fragment>
-              <Form.Input size="big" required error={errorAmount} type="number" step="0.01" label='You owe' placeholder='Amount...' value={amount} onChange={(_, e) => setAmount(e.value)} />
-              <Form.Dropdown selection required error={errorContact} label='To' options={contacts.sort().map(toOptions)} placeholder='Contact...' value={who} onChange={(_, e) => setWho(e.value)} />
+              <Form.Input required error={errorAmount} type="number" step="0.01" label='You owe' placeholder='Amount...' value={amount} onChange={(_, e) => setAmount(e.value)} />
+              <Form.Select required error={errorContact} label='To' options={contacts.sort().map(toOptions)} placeholder='Contact...' value={who} onChange={(_, e) => setWho(e.value)} />
             </Fragment>
             :
             <Fragment>
-              <Form.Dropdown selection required error={errorContact} label='Contact' options={contacts.sort().map(toOptions)} placeholder='Contact...' value={who} onChange={(_, e) => setWho(e.value)} />
-              <Form.Input size="big" required error={errorAmount} type="number" step="0.01" label='Owes you' placeholder='Amount...' value={amount} onChange={(_, e) => setAmount(e.value)} />
+              <Form.Select required error={errorContact} label='Contact' options={contacts.sort().map(toOptions)} placeholder='Contact...' value={who} onChange={(_, e) => setWho(e.value)} />
+              <Form.Input required error={errorAmount} type="number" step="0.01" label='Owes you' placeholder='Amount...' value={amount} onChange={(_, e) => setAmount(e.value)} />
             </Fragment>
           }
-          <Form.Dropdown selection required error={errorReason} label='For' options={reasons.sort().map(toOptions)} placeholder='Reason...' value={reason} onChange={(_, e) => setReason(e.value)} />
-          <Form.Input size="big" label='Comment (optional)' placeholder='Comment...' value={comment} onChange={(_, e) => setComment(e.value)} />
+          <Form.Select required error={errorReason} label='For' options={reasons.sort().map(toOptions)} placeholder='Reason...' value={reason} onChange={(_, e) => setReason(e.value)} />
+          <Form.Input label='Comment (optional)' placeholder='Comment...' value={comment} onChange={(_, e) => setComment(e.value)} />
           <Form.Group widths="equal">
-            <Form.Button size="big" color="blue" basic fluid onClick={(e) => {
+            <Form.Button color="blue" basic fluid onClick={(e) => {
               e.preventDefault()
               setIsDebt(!isDebt)
             }}>Toggle reciever</Form.Button>
-            <Form.Button size="big" color="green" basic fluid>Add debt</Form.Button>
+            <Form.Button color="green" basic fluid>Add debt</Form.Button>
           </Form.Group>
         </Form>
       </Segment>

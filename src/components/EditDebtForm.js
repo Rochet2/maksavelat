@@ -68,28 +68,28 @@ function EditDebtForm({ reasons, contacts, whiteTheme, dispatch, debt, history }
         >
           {isDebt ?
             <Fragment>
-              <Form.Input size="big" required error={errorAmount} type="number" step="0.01" label='You owe' placeholder='Amount...' value={amount} onChange={(_, e) => setAmount(e.value)} />
-              <Form.Dropdown scrolling selection required error={errorContact} label='To' options={contacts.sort().map(toOptions)} placeholder='Contact...' value={who} onChange={(_, e) => setWho(e.value)} />
+              <Form.Input required error={errorAmount} type="number" step="0.01" label='You owe' placeholder='Amount...' value={amount} onChange={(_, e) => setAmount(e.value)} />
+              <Form.Select required error={errorContact} label='To' options={contacts.sort().map(toOptions)} placeholder='Contact...' value={who} onChange={(_, e) => setWho(e.value)} />
             </Fragment>
             :
             <Fragment>
-              <Form.Dropdown scrolling selection required error={errorContact} label='Contact' options={contacts.sort().map(toOptions)} placeholder='Contact...' value={who} onChange={(_, e) => setWho(e.value)} />
-              <Form.Input size="big" required error={errorAmount} type="number" step="0.01" label='Owes you' placeholder='Amount...' value={amount} onChange={(_, e) => setAmount(e.value)} />
+              <Form.Select required error={errorContact} label='Contact' options={contacts.sort().map(toOptions)} placeholder='Contact...' value={who} onChange={(_, e) => setWho(e.value)} />
+              <Form.Input required error={errorAmount} type="number" step="0.01" label='Owes you' placeholder='Amount...' value={amount} onChange={(_, e) => setAmount(e.value)} />
             </Fragment>
           }
-          <Form.Dropdown scrolling selection required error={errorReason} label='For' options={reasons.sort().map(toOptions)} placeholder='Reason...' value={reason} onChange={(_, e) => setReason(e.value)} />
-          <Form.Input size="big" label='Comment (optional)' placeholder='Comment...' value={comment} onChange={(_, e) => setComment(e.value)} />
+          <Form.Select required error={errorReason} label='For' options={reasons.sort().map(toOptions)} placeholder='Reason...' value={reason} onChange={(_, e) => setReason(e.value)} />
+          <Form.Input label='Comment (optional)' placeholder='Comment...' value={comment} onChange={(_, e) => setComment(e.value)} />
           <Form.Group widths="equal">
-            <Form.Button size="big" color="blue" basic fluid onClick={(e) => {
+            <Form.Button color="blue" basic fluid onClick={(e) => {
               e.preventDefault()
               setIsDebt(!isDebt)
             }}>Toggle reciever</Form.Button>
             <Form.Field>
-            <Form.Button size="big" color="green" fluid>Save debt</Form.Button>
+            <Form.Button color="green" fluid>Save debt</Form.Button>
             </Form.Field>
           </Form.Group>
           <Form.Group widths="equal">
-            <Form.Button size="big" color="orange" basic fluid onClick={(e) => {
+            <Form.Button color="orange" basic fluid onClick={(e) => {
               e.preventDefault()
               if (errorTimer)
                 clearTimeout(errorTimer)
@@ -105,7 +105,7 @@ function EditDebtForm({ reasons, contacts, whiteTheme, dispatch, debt, history }
               setErrorReason(false)
               toast({ type: 'success', icon: 'erase', title: 'Form reset', time: 3000 });
             }}>Reset form</Form.Button>
-            <Form.Button size="big" color="red" basic fluid onClick={(e) => {
+            <Form.Button color="red" basic fluid onClick={(e) => {
               e.preventDefault()
               dispatch({ type: 'DeleteDebt', value: debt.id})
               history.goBack()

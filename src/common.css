@@ -1,9 +1,0 @@
-.selection.dropdown {
-  font-size: 1.25em;
-}
-.selection.dropdown *.item {
-  font-size: 1.15em !important;
-}
-.selection.dropdown *.menu {
-  max-height: 50vh !important;
-}

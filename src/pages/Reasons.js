@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux'
 import { array, func, bool } from 'prop-types'
-import { Header, Button, Segment, Input, List, Divider } from 'semantic-ui-react'
+import { Header, Button, Segment, Input, List } from 'semantic-ui-react'
 
 function Reasons({ whiteTheme, dispatch, reasons }) {
   const [value, setValue] = useState('')
@@ -10,19 +10,16 @@ function Reasons({ whiteTheme, dispatch, reasons }) {
       <Segment inverted={whiteTheme} basic style={{ height: '100vh' }}>
         <Header size="large">Reasons</Header>
         <Input
-          fluid
-          size="big"
           action={{
             content: 'Add reason', onClick: () => {
               dispatch({ type: 'AddReason', value })
               setValue('')
             }
           }}
-          placeholder='Reason name...'
+          placeholder='Reason name....'
           onChange={e => setValue(e.target.value)}
           value={value}
         />
-        <Divider />
         <List inverted={whiteTheme} divided>
           {reasons.map(reason => (
             <List.Item key={reason}>
