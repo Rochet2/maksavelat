@@ -1,0 +1,17 @@
+kind: Service
+apiVersion: v1
+metadata:
+  labels:
+    app: rimi-maksavelat
+  name: rimi-maksavelat
+  namespace: workshop
+
+spec:
+  type: NodePort
+  ports:
+    - name: http
+      port: 8080
+      protocol: TCP
+      targetPort: 3000
+  selector:
+    app: rimi-maksavelat

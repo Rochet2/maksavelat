@@ -1,0 +1,35 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  namespace: workshop
+  name: rimi-maksavelat
+  labels:
+    app: rimi-maksavelat
+
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rimi-maksavelat
+
+  template:
+    metadata:
+      labels:
+        app: rimi-maksavelat
+      annotations:
+    spec:
+      containers:
+        - image: gcr.io/unity-ads-workshop-test/rimi-maksavelat:latest
+          name: rimi-maksavelat
+          imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              cpu: 0.1
+              memory: 128Mi
+            limits:
+              cpu: 0.5
+              memory: 1024Mi
+
+      nodeSelector:
+        service: workshop
