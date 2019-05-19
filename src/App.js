@@ -10,7 +10,7 @@ import EditDebt from './pages/EditDebt'
 
 function App() {
   return (
-    <Router basename={process.env.NODE_ENV === 'production' ? '/maksavelat' : ''}>
+    <Router basename={process.env.NODE_ENV === 'production' ? '' : ''}>
       <Switch>
         <Route exact path="/" component={MainPage} />
         <Route exact path="/AddDebt" component={AddDebt} />
