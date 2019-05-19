@@ -22,7 +22,7 @@ spec:
       containers:
         - image: gcr.io/unity-ads-workshop-test/rimi-maksavelat:latest
           name: rimi-maksavelat
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           resources:
             requests:
               cpu: 0.1
