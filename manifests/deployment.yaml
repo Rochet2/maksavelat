@@ -2,26 +2,26 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   namespace: workshop
-  name: rimi-maksavelat
+  name: maksavelat
   labels:
-    app: rimi-maksavelat
+    app: maksavelat
 
 spec:
   progressDeadlineSeconds: 600
   replicas: 1
   selector:
     matchLabels:
-      app: rimi-maksavelat
+      app: maksavelat
 
   template:
     metadata:
       labels:
-        app: rimi-maksavelat
+        app: maksavelat
       annotations:
     spec:
       containers:
-        - image: gcr.io/unity-ads-workshop-test/rimi-maksavelat:latest
-          name: rimi-maksavelat
+        - image: gcr.io/unity-ads-workshop-test/maksavelat:latest
+          name: maksavelat
           imagePullPolicy: Always
           resources:
             requests:

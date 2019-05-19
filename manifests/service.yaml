@@ -2,8 +2,8 @@ kind: Service
 apiVersion: v1
 metadata:
   labels:
-    app: rimi-maksavelat
-  name: rimi-maksavelat
+    app: maksavelat
+  name: maksavelat
   namespace: workshop
 
 spec:
@@ -14,5 +14,5 @@ spec:
       protocol: TCP
       targetPort: 8080
   selector:
-    app: rimi-maksavelat
+    app: maksavelat
 
