@@ -1,7 +1,7 @@
 {
   "main.css": "/maksavelat/static/css/main.d375c9b3.chunk.css",
-  "main.js": "/maksavelat/static/js/main.24281288.chunk.js",
-  "main.js.map": "/maksavelat/static/js/main.24281288.chunk.js.map",
+  "main.js": "/maksavelat/static/js/main.5f889c1a.chunk.js",
+  "main.js.map": "/maksavelat/static/js/main.5f889c1a.chunk.js.map",
   "static/css/1.02455c15.chunk.css": "/maksavelat/static/css/1.02455c15.chunk.css",
   "static/js/1.aa21d788.chunk.js": "/maksavelat/static/js/1.aa21d788.chunk.js",
   "static/js/1.aa21d788.chunk.js.map": "/maksavelat/static/js/1.aa21d788.chunk.js.map",
@@ -10,6 +10,6 @@
   "static/css/main.d375c9b3.chunk.css.map": "/maksavelat/static/css/main.d375c9b3.chunk.css.map",
   "static/css/1.02455c15.chunk.css.map": "/maksavelat/static/css/1.02455c15.chunk.css.map",
   "index.html": "/maksavelat/index.html",
-  "precache-manifest.ab64c230dcd2fc7cc20485c95ea1e84a.js": "/maksavelat/precache-manifest.ab64c230dcd2fc7cc20485c95ea1e84a.js",
+  "precache-manifest.ecef27286770d4eaf79fd9ca92810bee.js": "/maksavelat/precache-manifest.ecef27286770d4eaf79fd9ca92810bee.js",
   "service-worker.js": "/maksavelat/service-worker.js"
 }

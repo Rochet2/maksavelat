@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "24281288b66941b4f186",
+    "revision": "5f889c1ae3d812e16c59",
     "url": "/maksavelat/static/css/main.d375c9b3.chunk.css"
   },
   {
-    "revision": "24281288b66941b4f186",
-    "url": "/maksavelat/static/js/main.24281288.chunk.js"
+    "revision": "5f889c1ae3d812e16c59",
+    "url": "/maksavelat/static/js/main.5f889c1a.chunk.js"
   },
   {
     "revision": "aa21d788aa7f4bb0ca42",
@@ -20,7 +20,7 @@ self.__precacheManifest = [
     "url": "/maksavelat/static/js/runtime~main.3164e04f.js"
   },
   {
-    "revision": "0452239d6c7fdfb42ea83493bdc32792",
+    "revision": "d799bcade1a55fc6f6e2c19087936496",
     "url": "/maksavelat/index.html"
   }
 ];
