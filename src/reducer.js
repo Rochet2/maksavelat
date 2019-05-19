@@ -1,6 +1,6 @@
 const initialState = {
   reasons: ["Movies", "Badminton", "Other"],
-  contacts: [],
+  contacts: ["Sasu", "Ilkka"],
   debts: [],
   whiteTheme: false,
 }
